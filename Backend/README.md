@@ -9,7 +9,8 @@ Backend server for the Unified College Portal application built with Node.js and
 - Contact form submission
 - User profile management
 - Role-based access control (Student, Parent, Faculty, Admin)
-- File-based data storage (can be easily migrated to database)
+- MySQL database integration
+- Connection pooling for optimal performance
 
 ## Setup Instructions
 
@@ -20,17 +21,36 @@ cd Backend
 npm install
 ```
 
-### 2. Environment Configuration
+### 2. MySQL Database Setup
 
-Create a `.env` file in the Backend directory:
+**Prerequisites:** MySQL server must be installed and running.
 
-```env
-PORT=3000
-NODE_ENV=development
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-```
+1. **Install MySQL** (if not installed):
+   ```bash
+   # macOS
+   brew install mysql
+   brew services start mysql
+   ```
 
-**Important:** Change `JWT_SECRET` to a secure random string in production.
+2. **Configure database connection** in `.env` file:
+   ```env
+   PORT=3000
+   NODE_ENV=development
+   JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+   
+   # MySQL Database Configuration
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=your_mysql_password
+   DB_NAME=college_portal
+   ```
+
+3. **Create database and tables:**
+   ```bash
+   npm run migrate
+   ```
+
+   For detailed MySQL setup instructions, see [MYSQL_SETUP.md](MYSQL_SETUP.md)
 
 ### 3. Run the Server
 
@@ -70,13 +90,15 @@ The server will start on `http://localhost:3000`
 - `PUT /api/users/profile` - Update user profile (requires authentication)
 - `GET /api/users/all` - Get all users (Admin only)
 
-## Data Storage
+## Database
 
-Currently, the application uses JSON files for data storage:
-- `Backend/data/users.json` - User data
-- `Backend/data/contacts.json` - Contact form submissions
+The application uses MySQL database with the following tables:
+- `users` - User accounts and authentication data
+- `contacts` - Contact form submissions
 
-These files are automatically created when the server starts.
+**Database Schema:** See `database/schema.sql`
+
+**Migration:** Run `npm run migrate` to create database and tables automatically.
 
 ## Security Features
 
@@ -86,11 +108,28 @@ These files are automatically created when the server starts.
 - CORS enabled for frontend communication
 - Role-based access control
 
+## Database Management
+
+### Migration Commands
+- `npm run migrate` - Create database and tables
+
+### Manual Database Access
+```bash
+mysql -u root -p college_portal
+```
+
+### View Tables
+```sql
+SHOW TABLES;
+SELECT * FROM users;
+SELECT * FROM contacts;
+```
+
 ## Future Enhancements
 
-- Database integration (MongoDB/PostgreSQL)
 - Email notifications
 - Password reset functionality
 - File upload support
 - Advanced analytics and reporting
+- Database migrations and versioning
 

@@ -109,8 +109,10 @@ router.post('/login', [
       });
     }
 
-    // Check if user is active
-    if (!user.isActive) {
+    // Check if user is active (MySQL returns isActive as 1/0, not boolean)
+    // Convert to boolean: 1 = true (active), 0 = false (inactive)
+    const isActive = Boolean(user.isActive);
+    if (!isActive) {
       return res.status(403).json({
         success: false,
         message: 'Account is deactivated. Please contact administrator.'

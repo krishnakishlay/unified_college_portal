@@ -1,78 +1,92 @@
-const fs = require('fs');
-const path = require('path');
-
-const DATA_FILE = path.join(__dirname, '../data/contacts.json');
-
-// Ensure data directory exists
-const dataDir = path.dirname(DATA_FILE);
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
-}
-
-// Initialize contacts file if it doesn't exist
-if (!fs.existsSync(DATA_FILE)) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
-}
+const { query } = require('../config/database');
 
 class Contact {
-  static getAllContacts() {
+  static async getAllContacts() {
     try {
-      const data = fs.readFileSync(DATA_FILE, 'utf8');
-      return JSON.parse(data);
+      const contacts = await query('SELECT * FROM contacts ORDER BY createdAt DESC');
+      return contacts;
     } catch (error) {
-      console.error('Error reading contacts file:', error);
-      return [];
+      console.error('Error fetching all contacts:', error);
+      throw error;
     }
   }
 
-  static saveContacts(contacts) {
+  static async create(contactData) {
     try {
-      fs.writeFileSync(DATA_FILE, JSON.stringify(contacts, null, 2));
-      return true;
+      const result = await query(
+        `INSERT INTO contacts (name, email, subject, message, status) 
+         VALUES (?, ?, ?, ?, ?)`,
+        [
+          contactData.name,
+          contactData.email,
+          contactData.subject,
+          contactData.message,
+          'new'
+        ]
+      );
+
+      // Fetch the created contact
+      const newContact = await this.findById(result.insertId);
+      return newContact;
     } catch (error) {
-      console.error('Error writing contacts file:', error);
-      return false;
+      console.error('Error creating contact:', error);
+      throw error;
     }
   }
 
-  static create(contactData) {
-    const contacts = this.getAllContacts();
-
-    const newContact = {
-      id: Date.now().toString(),
-      name: contactData.name,
-      email: contactData.email,
-      subject: contactData.subject,
-      message: contactData.message,
-      createdAt: new Date().toISOString(),
-      status: 'new' // new, read, replied
-    };
-
-    contacts.push(newContact);
-    this.saveContacts(contacts);
-
-    return newContact;
-  }
-
-  static findById(id) {
-    const contacts = this.getAllContacts();
-    return contacts.find(c => c.id === id);
-  }
-
-  static updateStatus(id, status) {
-    const contacts = this.getAllContacts();
-    const contactIndex = contacts.findIndex(c => c.id === id);
-    
-    if (contactIndex === -1) {
-      return null;
+  static async findById(id) {
+    try {
+      const contacts = await query('SELECT * FROM contacts WHERE id = ?', [id]);
+      return contacts[0] || null;
+    } catch (error) {
+      console.error('Error finding contact by ID:', error);
+      throw error;
     }
+  }
 
-    contacts[contactIndex].status = status;
-    this.saveContacts(contacts);
+  static async updateStatus(id, status) {
+    try {
+      const validStatuses = ['new', 'read', 'replied'];
+      if (!validStatuses.includes(status)) {
+        throw new Error('Invalid status value');
+      }
 
-    return contacts[contactIndex];
+      await query(
+        'UPDATE contacts SET status = ? WHERE id = ?',
+        [status, id]
+      );
+
+      // Fetch updated contact
+      const updatedContact = await this.findById(id);
+      return updatedContact;
+    } catch (error) {
+      console.error('Error updating contact status:', error);
+      throw error;
+    }
+  }
+
+  static async getContactsByStatus(status) {
+    try {
+      const contacts = await query(
+        'SELECT * FROM contacts WHERE status = ? ORDER BY createdAt DESC',
+        [status]
+      );
+      return contacts;
+    } catch (error) {
+      console.error('Error fetching contacts by status:', error);
+      throw error;
+    }
+  }
+
+  static async deleteContact(id) {
+    try {
+      const result = await query('DELETE FROM contacts WHERE id = ?', [id]);
+      return result.affectedRows > 0;
+    } catch (error) {
+      console.error('Error deleting contact:', error);
+      throw error;
+    }
   }
 }
 
 module.exports = Contact;
-

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 require('dotenv').config();
 
+const { testConnection } = require('./config/database');
 const authRoutes = require('./routes/auth');
 const contactRoutes = require('./routes/contact');
 const userRoutes = require('./routes/users');
@@ -49,10 +50,26 @@ app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Route not found' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+// Start server and test database connection
+async function startServer() {
+  // Test database connection
+  const dbConnected = await testConnection();
+  
+  if (!dbConnected) {
+    console.error('⚠️  Warning: Database connection failed. Please check your database configuration.');
+    console.error('   The server will start but database operations may fail.');
+  }
+
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    if (dbConnected) {
+      console.log(`Database: ${process.env.DB_NAME || 'college_portal'} (Connected)`);
+    }
+  });
+}
+
+startServer();
 
 module.exports = app;
 
