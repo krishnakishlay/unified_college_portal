@@ -40,6 +40,11 @@
         </nav>
     </header>
 
+   
+    
+
+
+
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
@@ -197,7 +202,16 @@
                 <h2 class="section-title">Sign In to Your Account</h2>
                 <p class="section-subtitle">Enter your credentials to access your portal</p>
                 <div class="signin-form-container">
-                    <form class="signin-form">
+                    <form class="signin-form"id="signinForm">
+                        <label for="loginRole">I am a:</label>
+                            <select id="loginRole" name="loginRole" required>
+                                <option value="">Select your role</option>
+                                <option value="student">Student</option>
+                                <option value="parent">Parent</option>
+                                <option value="faculty">Faculty</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="loginEmail">Email or Username</label>
                             <input type="text" id="loginEmail" name="loginEmail" required>

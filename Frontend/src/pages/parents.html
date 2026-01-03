@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - Institute Portal</title>
+    <title>Parent Dashboard - Institute Portal</title>
     <link rel="stylesheet" href="./src/assets/css/dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,14 +15,14 @@
         <div class="header-content">
             <div class="logo-section">
                 <img src="logo-placeholder.png" alt="Institute Logo" onerror="this.style.display='none'">
-                <h1>Student Portal</h1>
+                <h1>Parent Portal</h1>
             </div>
             <div class="user-section">
                 <div class="user-info">
-                    <div class="user-avatar">JS</div>
+                    <div class="user-avatar">MS</div>
                     <div class="user-details">
-                        <div class="user-name">John Smith</div>
-                        <div class="user-role">Student</div>
+                        <div class="user-name">Mary Smith</div>
+                        <div class="user-role">Parent</div>
                     </div>
                 </div>
                 <a href="index.html" class="logout-btn">Logout</a>
@@ -34,15 +34,28 @@
     <div class="dashboard-container">
         <!-- Welcome Section -->
         <section class="welcome-section">
-            <h2>Welcome back, John!</h2>
-            <p>Track your academic progress, attendance, and achievements all in one place.</p>
+            <h2>Welcome, Mary Smith!</h2>
+            <p>Monitor your child's academic progress, attendance, and achievements in real-time.</p>
         </section>
+
+        <!-- Child Selection -->
+        <div class="dashboard-card" style="margin-bottom: 30px;">
+            <div class="card-header">
+                <h3 class="card-title">Select Child</h3>
+            </div>
+            <div style="padding: 15px 0;">
+                <select style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 16px; font-family: 'Poppins', sans-serif;">
+                    <option>John Smith - Grade 10</option>
+                    <option>Sarah Smith - Grade 8</option>
+                </select>
+            </div>
+        </div>
 
         <!-- Stats Cards -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-header">
-                    <div class="stat-title">Overall Attendance</div>
+                    <div class="stat-title">Child's Attendance</div>
                     <div class="stat-icon">📊</div>
                 </div>
                 <div class="stat-value">87%</div>
@@ -50,7 +63,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-header">
-                    <div class="stat-title">Current GPA</div>
+                    <div class="stat-title">Overall GPA</div>
                     <div class="stat-icon">⭐</div>
                 </div>
                 <div class="stat-value">3.8</div>
@@ -58,11 +71,11 @@
             </div>
             <div class="stat-card">
                 <div class="stat-header">
-                    <div class="stat-title">Assignments Pending</div>
-                    <div class="stat-icon">📝</div>
+                    <div class="stat-title">Assignments Completed</div>
+                    <div class="stat-icon">✅</div>
                 </div>
-                <div class="stat-value">3</div>
-                <div class="stat-change">Due this week</div>
+                <div class="stat-value">24/27</div>
+                <div class="stat-change">89% completion rate</div>
             </div>
             <div class="stat-card">
                 <div class="stat-header">
@@ -76,11 +89,11 @@
 
         <!-- Dashboard Content -->
         <div class="dashboard-grid">
-            <!-- Attendance Card -->
+            <!-- Child's Attendance -->
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3 class="card-title">Recent Attendance</h3>
-                    <a href="#" class="card-action">View All</a>
+                    <h3 class="card-title">Attendance Overview</h3>
+                    <a href="#" class="card-action">View Details</a>
                 </div>
                 <table class="data-table">
                     <thead>
@@ -98,7 +111,7 @@
                         </tr>
                         <tr>
                             <td>2024-01-15</td>
-                            <td>physics</td>
+                            <td>Science</td>
                             <td><span class="status-badge status-present">Present</span></td>
                         </tr>
                         <tr>
@@ -120,11 +133,11 @@
                 </table>
             </div>
 
-            <!-- Performance Card -->
+            <!-- Academic Performance -->
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3 class="card-title">Academic Performance</h3>
-                    <a href="#" class="card-action">View Details</a>
+                    <a href="#" class="card-action">View Report</a>
                 </div>
                 <div class="progress-container">
                     <div class="progress-label">
@@ -206,7 +219,7 @@
             <!-- Achievements -->
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3 class="card-title">Recent Achievements</h3>
+                    <h3 class="card-title">Child's Achievements</h3>
                     <a href="#" class="card-action">View All</a>
                 </div>
                 <ul class="info-list">
@@ -229,29 +242,26 @@
                 </ul>
             </div>
 
-            <!-- Quick Actions -->
+            <!-- Messages from Teachers -->
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3 class="card-title">Quick Actions</h3>
+                    <h3 class="card-title">Messages from Teachers</h3>
+                    <a href="#" class="card-action">View All</a>
                 </div>
-                <div class="quick-actions">
-                    <a href="#" class="action-btn">
-                        <div class="action-icon">📅</div>
-                        <span>View Schedule</span>
-                    </a>
-                    <a href="#" class="action-btn">
-                        <div class="action-icon">📚</div>
-                        <span>Course Materials</span>
-                    </a>
-                    <a href="#" class="action-btn">
-                        <div class="action-icon">📝</div>
-                        <span>Assignments</span>
-                    </a>
-                    <a href="#" class="action-btn">
-                        <div class="action-icon">💬</div>
-                        <span>Messages</span>
-                    </a>
-                </div>
+                <ul class="info-list">
+                    <li>
+                        <span class="info-label">📧 From: Mr. Johnson (Math)</span>
+                        <span class="info-value">2 days ago</span>
+                    </li>
+                    <li>
+                        <span class="info-label">📧 From: Ms. Williams (Science)</span>
+                        <span class="info-value">5 days ago</span>
+                    </li>
+                    <li>
+                        <span class="info-label">📧 From: Mr. Brown (English)</span>
+                        <span class="info-value">1 week ago</span>
+                    </li>
+                </ul>
             </div>
 
             <!-- Upcoming Events -->
@@ -262,20 +272,20 @@
                 </div>
                 <ul class="info-list">
                     <li>
-                        <span class="info-label">📅 Mid-term Exam</span>
-                        <span class="info-value">Jan 25, 2024</span>
+                        <span class="info-label">📅 Parent-Teacher Meeting</span>
+                        <span class="info-value">Feb 10, 2024</span>
                     </li>
                     <li>
                         <span class="info-label">📅 Science Fair</span>
                         <span class="info-value">Feb 5, 2024</span>
                     </li>
                     <li>
-                        <span class="info-label">📅 Parent-Teacher Meeting</span>
-                        <span class="info-value">Feb 10, 2024</span>
-                    </li>
-                    <li>
                         <span class="info-label">📅 Sports Day</span>
                         <span class="info-value">Feb 15, 2024</span>
+                    </li>
+                    <li>
+                        <span class="info-label">📅 Annual Day</span>
+                        <span class="info-value">Mar 1, 2024</span>
                     </li>
                 </ul>
             </div>

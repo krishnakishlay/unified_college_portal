@@ -1,15 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Faculty | College Portal</title>
-  <link rel="stylesheet" href="../assets/css/global.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - Institute Portal</title>
+    <link rel="stylesheet" href="./src/assets/css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <main class="page-shell">
-    <h1>Faculty</h1>
-    <p>Placeholder faculty page.</p>
-  </main>
-  <script src="../assets/js/auth.js"></script>
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="logo-placeholder.png" alt="Institute Logo" onerror="this.style.display='none'">
+                <h1>Faculty Portal</h1>
+            </div>
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-avatar">RJ</div>
+                    <div class="user-details">
+                        <div class="user-name">Dr. Robert Johnson</div>
+                        <div class="user-role">Faculty - Mathematics</div>
+                    </div>
+                </div>
+                <a href="index.html" class="logout-btn">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h2>Welcome, Dr. Robert Johnson!</h2>
+            <p>Manage your classes, track student attendance, update grades, and access administrative tools.</p>
+        </section>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Total Students</div>
+                    <div class="stat-icon">👥</div>
+                </div>
+                <div class="stat-value">145</div>
+                <div class="stat-change">Across 5 classes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Classes Today</div>
+                    <div class="stat-icon">📚</div>
+                </div>
+                <div class="stat-value">4</div>
+                <div class="stat-change">8:00 AM - 3:00 PM</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Assignments Pending</div>
+                    <div class="stat-icon">📝</div>
+                </div>
+                <div class="stat-value">12</div>
+                <div class="stat-change">To be graded</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Average Attendance</div>
+                    <div class="stat-icon">📊</div>
+                </div>
+                <div class="stat-value">89%</div>
+                <div class="stat-change">This month</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-grid">
+            <!-- Today's Schedule -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3 class="card-title">Today's Schedule</h3>
+                    <a href="#" class="card-action">View Full Schedule</a>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Class</th>
+                            <th>Room</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8:00 AM</td>
+                            <td>Grade 10 - Mathematics</td>
+                            <td>Room 201</td>
+                        </tr>
+                        <tr>
+                            <td>9:30 AM</td>
+                            <td>Grade 11 - Mathematics</td>
+                            <td>Room 205</td>
+                        </tr>
+                        <tr>
+                            <td>11:00 AM</td>
+                            <td>Grade 9 - Mathematics</td>
+                            <td>Room 201</td>
+                        </tr>
+                        <tr>
+                            <td>2:00 PM</td>
+                            <td>Grade 12 - Mathematics</td>
+                            <td>Room 210</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Recent Attendance -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Attendance</h3>
+                    <a href="#" class="card-action">Mark Attendance</a>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Date</th>
+                            <th>Present</th>
+                            <th>Absent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Grade 10 - Mathematics</td>
+                            <td>2024-01-15</td>
+                            <td>28</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 11 - Mathematics</td>
+                            <td>2024-01-15</td>
+                            <td>30</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 9 - Mathematics</td>
+                            <td>2024-01-15</td>
+                            <td>27</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Grade 12 - Mathematics</td>
+                            <td>2024-01-14</td>
+                            <td>29</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pending Grading -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3 class="card-title">Pending Grading</h3>
+                    <a href="#" class="card-action">Grade Now</a>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Assignment</th>
+                            <th>Class</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Algebra Test</td>
+                            <td>Grade 10</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Calculus Quiz</td>
+                            <td>Grade 11</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Geometry Assignment</td>
+                            <td>Grade 9</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Statistics Project</td>
+                            <td>Grade 12</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Student Performance -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3 class="card-title">Class Performance Overview</h3>
+                    <a href="#" class="card-action">View Details</a>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Grade 10 - Mathematics</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Grade 11 - Mathematics</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Grade 9 - Mathematics</span>
+                        <span>82%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 82%"></div>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Grade 12 - Mathematics</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3 class="card-title">Quick Actions</h3>
+                </div>
+                <div class="quick-actions">
+                    <a href="#" class="action-btn">
+                        <div class="action-icon">📅</div>
+                        <span>Mark Attendance</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <div class="action-icon">📝</div>
+                        <span>Grade Assignments</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <div class="action-icon">📚</div>
+                        <span>Upload Materials</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <div class="action-icon">💬</div>
+                        <span>Send Messages</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <div class="action-icon">📊</div>
+                        <span>View Reports</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <div class="action-icon">👥</div>
+                        <span>Student List</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Messages -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Messages</h3>
+                    <a href="#" class="card-action">View All</a>
+                </div>
+                <ul class="info-list">
+                    <li>
+                        <span class="info-label">📧 From: Parent - John Smith</span>
+                        <span class="info-value">1 day ago</span>
+                    </li>
+                    <li>
+                        <span class="info-label">📧 From: Admin Office</span>
+                        <span class="info-value">2 days ago</span>
+                    </li>
+                    <li>
+                        <span class="info-label">📧 From: Parent - Sarah Johnson</span>
+                        <span class="info-value">3 days ago</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
