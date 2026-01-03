@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<<<<<<< HEAD
     <!-- Dashboard Header -->
     <header class="dashboard-header">
         <div class="header-content">
@@ -301,6 +302,30 @@
             </div>
         </div>
     </div>
+=======
+  <main class="page-shell">
+    <h1>Admin Portal</h1>
+    <p>Welcome, <span id="userName">Admin</span>!</p>
+    <button id="logoutBtn" style="margin-top: 20px; padding: 10px 20px; cursor: pointer;">Logout</button>
+  </main>
+  <script type="module">
+    import { initAuth, getAuthUser, logout } from '../assets/js/auth.js';
+    
+    // Initialize authentication
+    initAuth();
+    
+    // Display user name
+    const user = getAuthUser();
+    if (user) {
+      document.getElementById('userName').textContent = user.fullName || 'Admin';
+    }
+    
+    // Logout button
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      logout();
+    });
+  </script>
+>>>>>>> 4660b6d7ac2d658ea8563b343d444c1426095e93
 </body>
 </html>
 
